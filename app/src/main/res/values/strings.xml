@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="content_description_bookmarks">Закладки</string>
 </resources>
