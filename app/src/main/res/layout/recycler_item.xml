@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:theme="@style/Theme.Material3.DayNight"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/content_start"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginLeft="16dp"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="205dp"
+            app:layout_constraintGuide_begin="116dp"
             app:layout_constraintStart_toEndOf="@id/avatar" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:text="name"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/content_start"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,8 +33,17 @@
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:text="status"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/content_start" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Последнее местоположение:"
+            app:layout_constraintBottom_toTopOf="@+id/status"
             app:layout_constraintStart_toStartOf="@+id/content_start" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -46,6 +58,7 @@
             android:id="@+id/bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:src="@drawable/bookmark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
