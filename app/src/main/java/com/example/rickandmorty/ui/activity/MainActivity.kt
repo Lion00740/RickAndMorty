@@ -58,14 +58,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val ErrorDialog = AlertDialog.Builder(this)
+        val errorDialog = AlertDialog.Builder(this)
             .setTitle("Проблема!")
             .setMessage(errorMessage)
             .setPositiveButton("Продолжить", dialogButtonListener)
             .setNegativeButton("Выход", dialogButtonListener)
             .create()
 
-        ErrorDialog.show()
+        errorDialog.show()
     }
     private fun onLoading() = with(binding) {
         recyclerView.visibility = View.INVISIBLE

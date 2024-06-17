@@ -24,7 +24,7 @@ class DescriptionItemActivity : AppCompatActivity() {
 
         viewModel.test.observe(this@DescriptionItemActivity, Observer {
             with(binding) {
-                statusAndSpecies.text = "${it.status} - ${it.species}"
+                statusAndSpecies.text = "${it.species} - ${it.status}"
                 location.text = "Локация: ${it.location.name}"
                 origin.text = "Происхождение: ${it.origin.name}"
             }

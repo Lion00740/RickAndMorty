@@ -25,6 +25,7 @@ class MainViewModel @Inject constructor(
             val result = repository.getAllCharacters()
 
             if (result.data != null) {
+
                 _error.postValue("")
                 _test.postValue(result.data!!)
             } else {
