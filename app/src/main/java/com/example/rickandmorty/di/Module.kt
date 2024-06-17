@@ -1,6 +1,6 @@
 package com.example.rickandmorty.di
 
-import com.example.rickandmorty.RickAndMortyApi
+import com.example.rickandmorty.data.RickAndMortyApi
 import com.example.rickandmorty.data.RepositoryImpl
 import com.example.rickandmorty.domain.Repository
 import dagger.Module

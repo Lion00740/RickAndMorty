@@ -1,4 +1,4 @@
-package com.example.rickandmorty
+package com.example.rickandmorty.data
 
 import com.example.rickandmorty.domain.Character
 import com.example.rickandmorty.domain.Characters
@@ -11,5 +11,5 @@ interface RickAndMortyApi {
     @GET("character")
     suspend fun getAllCharacters() : Response<Characters>
     @GET("character/{id}")
-    suspend fun getCharacterById(@Path("id") id: Int) : Call<Character>
+    suspend fun getCharacterById(@Path("id") id: Int) : Response<Character>
 }

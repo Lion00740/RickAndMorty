@@ -14,12 +14,22 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
+
     private val _test = MutableLiveData<Characters>()
     val test: LiveData<Characters> = _test
 
+    private val _error = MutableLiveData("")
+    val error: LiveData<String> = _error
     fun getAllCharacters() {
         viewModelScope.launch{
-            _test.postValue(repository.getAllCharacters())
+            val result = repository.getAllCharacters()
+
+            if (result.data != null) {
+                _error.postValue("")
+                _test.postValue(result.data!!)
+            } else {
+                _error.postValue(result.message!!)
+            }
         }
     }
 }
