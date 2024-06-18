@@ -3,6 +3,8 @@ package com.example.rickandmorty.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,9 +22,6 @@ class CharacterAdapter() : ListAdapter<Character, CharacterAdapter.CharacterView
             name.text = character.name
             status.text = character.status
             species.text = character.species
-            bookmark.setOnClickListener {
-                bookmark.setImageResource(R.drawable.bookmark_check)
-            }
         }
     }
     class Comparator : DiffUtil.ItemCallback<Character>() {

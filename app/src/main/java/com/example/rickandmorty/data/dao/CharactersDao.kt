@@ -18,6 +18,9 @@ interface CharactersDao {
     @Query("SELECT * FROM character WHERE isBookmark = 1")
     suspend fun getAllBookmarks() : List<Character>
 
+    @Query("SELECT * FROM character WHERE id = :id")
+    suspend fun getCharacterById(id: Int) : Character
+
     @Insert(entity = Character::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: Character)
 

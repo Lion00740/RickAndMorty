@@ -5,11 +5,13 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rickandmorty.R
 import com.example.rickandmorty.ui.CharacterAdapter
 import com.example.rickandmorty.databinding.ActivityMainBinding
 import com.example.rickandmorty.ui.viewmodel.MainViewModel
@@ -24,20 +26,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         onLoading()
         setupRecycler(this@MainActivity)
+
+        binding.toolBar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.bookmarks -> {
+                    viewModel.getAllBookmarks()
+                    true
+                }
+                R.id.search -> {
+                    true
+                }
+                else -> false
+            }
+        }
 
         viewModel.getAllCharacters()
 
         viewModel.error.observe(this@MainActivity, Observer {
-            if (it != "") {
+            if (it != null) {
                 dialog(it)
             }
         })
 
         viewModel.test.observe(this@MainActivity, Observer {
-            adapter.submitList(it.results)
+            adapter.submitList(it)
             onResponse()
         })
 
