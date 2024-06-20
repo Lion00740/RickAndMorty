@@ -17,10 +17,9 @@ class RepositoryImpl @Inject constructor(
 
             if (response.isSuccessful && result != null ) {
                 result.results.forEach {
-
                     dao.insertCharacter(it)
                 }
-                Resource.Success(result.results)
+                Resource.Success(dao.getAllCharacters())
             } else {
                 Resource.Error(response.message())
             }
@@ -34,7 +33,7 @@ class RepositoryImpl @Inject constructor(
             val result = response.body()
 
             if (response.isSuccessful && result != null) {
-                Resource.Success(result)
+                Resource.Success(dao.getCharacterById(id))
             } else {
                 Resource.Error(response.message())
             }
@@ -48,5 +47,8 @@ class RepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Resource.Error(e.message ?: "error")
         }
+    }
+    override suspend fun updateCharacter(character: Character) {
+        dao.updateCharacter(character)
     }
 }

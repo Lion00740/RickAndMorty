@@ -27,4 +27,11 @@ class DescriptionItemViewModel @Inject constructor(
             }
         }
     }
+    fun setBookmark(id: Int) {
+        viewModelScope.launch{
+            _test.value?.isBookmark = _test.value?.isBookmark != true
+            repository.updateCharacter(_test.value!!)
+            // сделать так чтобы возвращался список который можно было бы
+        }
+    }
 }

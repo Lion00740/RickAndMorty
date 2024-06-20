@@ -26,20 +26,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         onLoading()
         setupRecycler(this@MainActivity)
+        binding.toolBar.navigationIcon = null
 
         binding.toolBar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.bookmarks -> {
+                    binding.toolBar.setNavigationIcon(R.drawable.back)
+                    viewModel.setState(false)
                     viewModel.getAllBookmarks()
                     true
                 }
                 R.id.search -> {
+                    binding.toolBar.setNavigationIcon(R.drawable.back)
                     true
                 }
                 else -> false
             }
+        }
+
+        binding.toolBar.setNavigationOnClickListener {
+            viewModel.setState(true)
+            binding.toolBar.navigationIcon = null
+            viewModel.getAllCharacters()
         }
 
         viewModel.getAllCharacters()
@@ -50,19 +61,33 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.test.observe(this@MainActivity, Observer {
+        viewModel.list.observe(this@MainActivity, Observer {
             adapter.submitList(it)
             onResponse()
         })
 
         adapter.onItemClick = {
             val intent = Intent(this@MainActivity, DescriptionItemActivity::class.java).apply {
-                putExtra("name", "${it.name}")
-                putExtra("avatar", "${it.image}")
                 putExtra("id", it.id)
             }
             startActivity(intent)
         }
+    }
+    //что-то в этом духе, но переделать, так как иногда вылетает список заметок
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.stateList.observe(this@MainActivity, Observer {
+            if (it) {
+                viewModel.getAllCharacters()
+            } else {
+                viewModel.getAllBookmarks()
+            }
+        })
+
+        viewModel.list.observe(this@MainActivity, Observer {
+            adapter.submitList(it)
+        })
     }
     private fun dialog(errorMessage: String) {
         val dialogButtonListener = DialogInterface.OnClickListener { dialog, element ->

@@ -23,7 +23,7 @@ data class Character(
     @ColumnInfo(name = "origin")
     val origin: Origin,
     @ColumnInfo(name = "isBookmark")
-    val isBookmark: Boolean = false
+    var isBookmark: Boolean = false
 )
 data class Location(
     val name: String = ""

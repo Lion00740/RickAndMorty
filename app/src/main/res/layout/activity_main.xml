@@ -18,6 +18,7 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/back"
             app:title="RickAndMorty"
             app:menu="@menu/main_menu">
         <EditText

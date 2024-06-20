@@ -20,13 +20,9 @@ interface CharactersDao {
 
     @Query("SELECT * FROM character WHERE id = :id")
     suspend fun getCharacterById(id: Int) : Character
-
-    @Insert(entity = Character::class, onConflict = OnConflictStrategy.REPLACE)
+    @Insert(entity = Character::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCharacter(character: Character)
 
     @Update(entity = Character::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateCharacter(character: Character)
-
-    @Delete(entity = Character::class)
-    suspend fun deleteCharacter(character: Character)
 }

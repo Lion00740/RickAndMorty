@@ -16,8 +16,11 @@ class MainViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
-    private val _test = MutableLiveData<List<Character>>()
-    val test: LiveData<List<Character>> = _test
+    private val _stateList = MutableLiveData<Boolean>(false)
+    val stateList:LiveData<Boolean> = _stateList
+
+    private val _list = MutableLiveData<List<Character>>()
+    val list: LiveData<List<Character>> = _list
 
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
@@ -27,7 +30,7 @@ class MainViewModel @Inject constructor(
             val result = repository.getAllCharacters()
 
             if (result.data != null) {
-                _test.postValue(result.data!!)
+                _list.postValue(result.data!!)
                 _error.postValue(result.message)
             } else {
                 _error.postValue(result.message!!)
@@ -35,11 +38,15 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun setState(bool: Boolean) {
+        _stateList.postValue(bool)
+    }
+
     fun getAllBookmarks() {
         viewModelScope.launch {
             val result = repository.getAllBookmarks()
             if (result.data != null) {
-                _test.postValue(result.data!!)
+                _list.postValue(result.data!!)
             }
         }
     }
