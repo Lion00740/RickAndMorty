@@ -48,6 +48,10 @@ class CharacterAdapter(private val viewModel: MainViewModel) : ListAdapter<Chara
             .inflate(R.layout.recycler_item, parent, false)
         return CharacterViewHolder(view)
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         holder.bind(getItem(position), viewModel)
         holder.itemView.setOnClickListener {

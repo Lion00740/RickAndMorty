@@ -14,22 +14,22 @@ import javax.inject.Inject
 class DescriptionItemViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel(){
-    private val _test = MutableLiveData<Character>()
-    val test: LiveData<Character> = _test
+    private val _character = MutableLiveData<Character>()
+    val character: LiveData<Character> = _character
 
     fun getCharacter(id: Int) {
         viewModelScope.launch {
             val response = repository.getCharacterById(id)
 
             if (response.data != null) {
-                _test.postValue(response.data!!)
+                _character.postValue(response.data!!)
             }
         }
     }
-    fun setBookmark(id: Int) {
+    fun setBookmark() {
         viewModelScope.launch{
-            _test.value?.isBookmark = _test.value?.isBookmark != true
-            repository.updateCharacter(_test.value!!)
+            _character.value?.isBookmark = _character.value?.isBookmark != true
+            repository.updateCharacter(_character.value!!)
         }
     }
 }

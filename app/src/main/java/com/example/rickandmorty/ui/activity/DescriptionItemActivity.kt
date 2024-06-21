@@ -19,15 +19,15 @@ class DescriptionItemActivity : AppCompatActivity() {
         binding = DescriptionItemLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getCharacter(intent.extras!!.getInt("id", 0))
+        viewModel.getCharacter(intent.extras!!.getInt("id"))
 
-        viewModel.test.observe(this@DescriptionItemActivity, Observer {
+        viewModel.character.observe(this@DescriptionItemActivity, Observer {
             with(binding) {
                 Picasso.get().load(it.image).into(avatar)
                 name.text = it.name
                 statusAndSpecies.text = "${it.species} - ${it.status}"
-                location.text = "${R.string.location} ${it.location.name}"
-                origin.text = "${R.string.origin} ${it.origin.name}"
+                location.text = "${resources.getString(R.string.location)} ${it.location.name}"
+                origin.text = "${resources.getString(R.string.origin)} ${it.origin.name}"
                 if (it.isBookmark) {
                     fabBookmark.setImageResource(R.drawable.bookmark_check)
                 } else {
@@ -37,8 +37,8 @@ class DescriptionItemActivity : AppCompatActivity() {
         })
 
         binding.fabBookmark.setOnClickListener {
-            viewModel.setBookmark(intent.extras!!.getInt("id", 0))
-            viewModel.test.observe(this@DescriptionItemActivity, Observer { character ->
+            viewModel.setBookmark()
+            viewModel.character.observe(this@DescriptionItemActivity, Observer { character ->
                 if(character.isBookmark) {
                     binding.fabBookmark.setImageResource(R.drawable.bookmark_check)
                 } else {

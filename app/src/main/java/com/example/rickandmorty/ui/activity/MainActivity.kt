@@ -5,6 +5,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
@@ -39,13 +41,24 @@ class MainActivity : AppCompatActivity() {
                     viewModel.getAllBookmarks()
                     true
                 }
-                R.id.search -> {
-                    binding.toolBar.setNavigationIcon(R.drawable.back)
-                    true
-                }
                 else -> false
             }
         }
+
+        binding.editTextSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.searchCharacters(s.toString())
+            }
+
+        })
 
         binding.toolBar.setNavigationOnClickListener {
             viewModel.setState(true)
@@ -75,17 +88,19 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-
+        onLoading()
         viewModel.stateList.observe(this@MainActivity, Observer {
             if (it) {
                 viewModel.getAllCharacters()
             } else {
+                binding.toolBar.setNavigationIcon(R.drawable.back)
                 viewModel.getAllBookmarks()
             }
         })
 
         viewModel.list.observe(this@MainActivity, Observer {
             adapter.submitList(it)
+            onResponse()
         })
     }
     private fun dialog(errorMessage: String) {
@@ -97,10 +112,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         val errorDialog = AlertDialog.Builder(this)
-            .setTitle(R.string.title_dialog)
+            .setTitle(resources.getString(R.string.title_dialog))
             .setMessage(errorMessage)
-            .setPositiveButton(R.string.positive_button_dialog, dialogButtonListener)
-            .setNegativeButton(R.string.negative_button_dialog, dialogButtonListener)
+            .setPositiveButton(resources.getString(R.string.positive_button_dialog), dialogButtonListener)
+            .setNegativeButton(resources.getString(R.string.negative_button_dialog), dialogButtonListener)
             .create()
 
         errorDialog.show()

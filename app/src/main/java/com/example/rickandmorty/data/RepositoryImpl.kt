@@ -28,18 +28,7 @@ class RepositoryImpl @Inject constructor(
         }
     }
     override suspend fun getCharacterById(id: Int): Resource<Character> {
-        return try {
-            val response = rickAndMortyApi.getCharacterById(id)
-            val result = response.body()
-
-            if (response.isSuccessful && result != null) {
-                Resource.Success(dao.getCharacterById(id))
-            } else {
-                Resource.Error(response.message())
-            }
-        } catch (e: Exception) {
-            Resource.WithoutNet(dao.getCharacterById(id), e.message ?: "error")
-        }
+        return Resource.Success(dao.getCharacterById(id))
     }
     override suspend fun getAllBookmarks(): Resource<List<Character>> {
         return try {
