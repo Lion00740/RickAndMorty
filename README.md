@@ -11,19 +11,28 @@
 Работа приложения:
 1. Запуск приложения
 	1. С интернетом
-	   ![[Pasted image 20240620163500.png]]
+
+	   ![mainActivity](https://github.com/Lion00740/RickAndMorty/blob/master/images/mainActivity.png)
 	2. Без интернета
+
 	   При запуске приложения будет выводиться сообщение, о том что возникли какие-то трудности, но сам список просмотреть можно, как и добавить персонажей в закладки
-	   ![[Pasted image 20240620163600.png]]
+
+	   ![mainActivityError](https://github.com/Lion00740/RickAndMorty/blob/master/images/mainActivityError.png)
 2. Просмотр конкретного элемента
+
    У просматриваемого персонажа появляются новые данные (**Происхождение и локация**)
-   ![[Pasted image 20240620163733.png]]
+
+   ![aboutActivity](https://github.com/Lion00740/RickAndMorty/blob/master/images/aboutCharacter.png)
 3. Добавление понравившегося персонажа в закладки
 	1. Добавление на главном экране
-	   ![[Pasted image 20240620164051.png]]
+
+	   ![setBookmarkMainActivity](https://github.com/Lion00740/RickAndMorty/blob/master/images/setBookmarkOnMainActivity.png)
 	2. Добавление на экране персонажа
-	   ![[Pasted image 20240620164258.png]]
+
+	   ![setBookmarkAboutActivity](https://github.com/Lion00740/RickAndMorty/blob/master/images/setBookmarkOnAboutActivity.png)
 4. Отображение списка персонажей, которые были добавлены в закладки
+
    По нажатию в правом верхнем углу на иконку закладок, появится список отмеченных персонажей, также в левом верхнем углу появляется стрелочка, которая позволит вернуться обратно к полному списку
-   ![[Pasted image 20240620164732.png]]
+
+   ![filterBookmarks](https://github.com/Lion00740/RickAndMorty/blob/master/images/filterBookmarks.png)
 5. ~~Сортировка~~
