@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.RecyclerItemBinding
 import com.example.rickandmorty.domain.Character
+import com.example.rickandmorty.ui.viewmodel.MainViewModel
 import com.squareup.picasso.Picasso
 
-class CharacterAdapter() : ListAdapter<Character, CharacterAdapter.CharacterViewHolder>(Comparator()) {
+class CharacterAdapter(private val viewModel: MainViewModel) : ListAdapter<Character, CharacterAdapter.CharacterViewHolder>(Comparator()) {
     lateinit var onItemClick: ((Character) -> Unit)
     class CharacterViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = RecyclerItemBinding.bind(item)
-        fun bind(character: Character) = with(binding) {
+        fun bind(character: Character, viewModel: MainViewModel) = with(binding) {
             Picasso.get().load(character.image).into(avatar)
             name.text = character.name
             status.text = character.status
@@ -24,6 +25,9 @@ class CharacterAdapter() : ListAdapter<Character, CharacterAdapter.CharacterView
                 bookmark.setImageResource(R.drawable.bookmark_check)
             } else {
                 bookmark.setImageResource(R.drawable.bookmark)
+            }
+            bookmark.setOnClickListener {
+                viewModel.setBookmark(character)
             }
         }
     }
@@ -45,7 +49,7 @@ class CharacterAdapter() : ListAdapter<Character, CharacterAdapter.CharacterView
         return CharacterViewHolder(view)
     }
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), viewModel)
         holder.itemView.setOnClickListener {
             onItemClick.invoke(getItem(position))
         }

@@ -26,8 +26,8 @@ class DescriptionItemActivity : AppCompatActivity() {
                 Picasso.get().load(it.image).into(avatar)
                 name.text = it.name
                 statusAndSpecies.text = "${it.species} - ${it.status}"
-                location.text = "Локация: ${it.location.name}"
-                origin.text = "Происхождение: ${it.origin.name}"
+                location.text = "${R.string.location} ${it.location.name}"
+                origin.text = "${R.string.origin} ${it.origin.name}"
                 if (it.isBookmark) {
                     fabBookmark.setImageResource(R.drawable.bookmark_check)
                 } else {
@@ -45,7 +45,6 @@ class DescriptionItemActivity : AppCompatActivity() {
                     binding.fabBookmark.setImageResource(R.drawable.bookmark)
                 }
             })
-            // почему нажимает дважды?
         }
     }
 }

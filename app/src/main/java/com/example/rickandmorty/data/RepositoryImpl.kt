@@ -1,6 +1,6 @@
 package com.example.rickandmorty.data
 
-import com.example.rickandmorty.Resource
+import com.example.rickandmorty.util.Resource
 import com.example.rickandmorty.data.dao.CharactersDao
 import com.example.rickandmorty.domain.Character
 import com.example.rickandmorty.domain.Repository

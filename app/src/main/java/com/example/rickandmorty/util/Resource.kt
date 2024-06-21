@@ -1,4 +1,4 @@
-package com.example.rickandmorty
+package com.example.rickandmorty.util
 
 sealed class Resource<T>(val data: T?, val message: String?) {
     class Success<T>(data: T) : Resource<T>(data, null)

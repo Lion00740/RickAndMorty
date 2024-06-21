@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    //что-то в этом духе, но переделать, так как иногда вылетает список заметок
     override fun onResume() {
         super.onResume()
 
@@ -98,10 +97,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         val errorDialog = AlertDialog.Builder(this)
-            .setTitle("Проблема!")
+            .setTitle(R.string.title_dialog)
             .setMessage(errorMessage)
-            .setPositiveButton("Продолжить", dialogButtonListener)
-            .setNegativeButton("Выход", dialogButtonListener)
+            .setPositiveButton(R.string.positive_button_dialog, dialogButtonListener)
+            .setNegativeButton(R.string.negative_button_dialog, dialogButtonListener)
             .create()
 
         errorDialog.show()
@@ -115,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         progressBar.visibility = View.INVISIBLE
     }
     private fun setupRecycler(context: Context) = with(binding) {
-        adapter = CharacterAdapter()
+        adapter = CharacterAdapter(viewModel)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
     }

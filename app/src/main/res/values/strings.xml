@@ -2,4 +2,13 @@
     <string name="app_name">RickAndMorty</string>
     <string name="bookmarks">Закладки</string>
     <string name="content_description_bookmarks">Закладки</string>
+    <string name="title_dialog">Проблема!</string>
+    <string name="positive_button_dialog">Продолжить</string>
+    <string name="negative_button_dialog">Выйти</string>
+    <string name="location">Локация: </string>
+    <string name="origin">Происхождение: </string>
+    <string name="alive_human">Жив - Человек</string>
+    <string name="character_name">Имя</string>
+    <string name="species">Разновидность: </string>
+    <string name="status">Статус</string>
 </resources>

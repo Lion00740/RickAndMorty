@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.domain.Character
-import com.example.rickandmorty.domain.Characters
 import com.example.rickandmorty.domain.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -31,7 +30,6 @@ class DescriptionItemViewModel @Inject constructor(
         viewModelScope.launch{
             _test.value?.isBookmark = _test.value?.isBookmark != true
             repository.updateCharacter(_test.value!!)
-            // сделать так чтобы возвращался список который можно было бы
         }
     }
 }

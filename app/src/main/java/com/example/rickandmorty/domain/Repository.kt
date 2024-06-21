@@ -1,6 +1,6 @@
 package com.example.rickandmorty.domain
 
-import com.example.rickandmorty.Resource
+import com.example.rickandmorty.util.Resource
 
 interface Repository {
     suspend fun getAllCharacters() : Resource<List<Character>>

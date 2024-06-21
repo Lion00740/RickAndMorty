@@ -1,6 +1,5 @@
 package com.example.rickandmorty.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -48,6 +47,16 @@ class MainViewModel @Inject constructor(
             if (result.data != null) {
                 _list.postValue(result.data!!)
             }
+        }
+    }
+    fun setBookmark(character: Character) {
+        viewModelScope.launch{
+            _list.value = _list.value?.map {
+                if(it.id == character.id) {
+                    it.copy(isBookmark = !it.isBookmark)
+                } else it
+            }
+            repository.updateCharacter(character.copy(isBookmark = !character.isBookmark))
         }
     }
 }
